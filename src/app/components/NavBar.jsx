@@ -4,13 +4,18 @@ import Image from "next/image";
 export default function NavBar(){
     
     return(
-        <nav className="bg-white px-10 h-[60px] flex items-center justify-between">
-            <div className="left">
+        <nav className="absolute right-0 left-0 z-50  px-10 h-[60px] flex items-center justify-between">
+            <div>
                 <h2>Sound proof</h2>
             </div>
-            <div className="middle relative">
-                <input type="text" className="border border-gray-300  outline-none px-5 py-2 rounded-full text-xl " />
-                <Image src={search} alt="img" className="w-[30px] absolute right-5 top-2.5 cursor-pointer" />
+            <div>
+                <ul className="flex gap-7 text-xl text-gray-600">
+                    <li className="hover:text-black cursor-pointer transition">Home</li>
+                    <li className="hover:text-black cursor-pointer transition">Products</li>
+                    <li className="hover:text-black cursor-pointer transition">Blog</li>
+                    <li className="hover:text-black cursor-pointer transition">About</li>
+                    <li className="hover:text-black cursor-pointer transition">Contact</li>
+                </ul>
             </div>
             <div className="right">
                 

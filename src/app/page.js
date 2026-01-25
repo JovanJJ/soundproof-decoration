@@ -1,5 +1,6 @@
 import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
+import Main from "../app/components/Main";
 
 export const metadata = {
   title: "decoration",
@@ -9,8 +10,8 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-    <NavBar />
     <Hero />
+    <Main />
     </>
   );
 }

@@ -1,18 +1,23 @@
 import Image from "next/image";
-import heroImg from "../../../public/hero3.jpg";
+import hero1 from "../../../public/hero1.png";
+import NavBar from "./NavBar";
+import TypeWriter from "./ui/TypeWriter";
+import Slide from "./ui/Slide";
 
-export default function Hero(){
-    return(
-        <section className="relative w-full h-[60vh] text-black">
-            <div className="absolute inset-0 w-full h-full ">
-            <Image src={heroImg} alt="img" fill className="object-cover" />
+export default function Hero() {
+    return (
+        <section className="relative w-full h-screen overflow-hidden">
+            <NavBar />
+            <div className="inset-0 bg-black/50"></div>
+            <div className="absolute top-35 left-10 z-50 w-full flex flex-col gap-3  text-gray-700">
+                <h2 className="text-4xl lg:text-6xl">With us</h2>
+                <span className="text-3xl lg:text-5xl"><TypeWriter /></span>
             </div>
-            <div className='w-full h-full absolute left-0 right-0 bg-black/50'></div>
-            <div className="relative z-100 w-full flex">
-                <div className="w-1/3">
-                <span className="text-xl text-gray-100 font-medium">Make you living room sound proof wiht a style</span>
-                </div>
+
+            <div className="absolute inset-0 h-[100vh]">
+                <Slide />
             </div>
+            <div className="absolute inset-0 bg-black/50"></div>
         </section>
     );
 }

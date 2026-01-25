@@ -16,12 +16,15 @@ const ProductSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        description: {
+            type: String,
+        },
         features: [
             {
                 type: String,
             }
         ],
-        images: [
+        image: [
             {
                 type: String,
                 trim: true,
