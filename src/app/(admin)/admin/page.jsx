@@ -4,10 +4,15 @@ import addProduct from "@/lib/actions";
 export default function AdminPage(){
     return(
         <section className="w-full md:p-20">
-            <form action={addProduct} className="flex flex-col gap-4 max-w-2xl">
+            <form action={addProduct} className="flex flex-col gap-4 max-w-4xl">
                 <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
                     <span className="w-30 flex justify-center">Title</span>
-                    <input type="text" name="title" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl" />
+                    <input type="text" name="title" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl min-h-25" />
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
+                    <span className="w-30 flex justify-center">mobileTitle</span>
+                    <input type="text" name="mobileTitle" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl min-h-25" />
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
@@ -17,17 +22,22 @@ export default function AdminPage(){
 
                 <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
                     <span className="w-31 flex justify-center">Short description</span>
-                    <textarea type="text" name="shortDescription" className="w-full sm:flex-1 border border-gray-400 py-1 rounded-xl p-5" />
+                    <textarea type="text" name="shortDescription" className="w-full sm:flex-1 border border-gray-400 py-1 rounded-xl p-5 min-h-52" />
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
+                    <span className="w-31 flex justify-center">descriptionIntro</span>
+                    <textarea type="text" name="descriptionIntro" className="w-full sm:flex-1 border border-gray-400 py-1 rounded-xl p-5 min-h-20" />
                 </div>
 
                  <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
                     <span className="w-31 flex justify-center">Description</span>
-                    <textarea type="text" name="description" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl p-5" />
+                    <textarea type="text" name="description" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl p-5 min-h-50" />
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
                     <span className="w-30 flex justify-center">Features</span>
-                    <input name="features" type="text" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl" />
+                    <input name="features" type="text" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl min-h-25" />
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
@@ -40,9 +50,21 @@ export default function AdminPage(){
                     <input name="category" type="text" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl" />
                 </div>
 
+                
+
                 <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
                     <span className="w-30 flex justify-center">Brand</span>
                     <input type="text" name="brand" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl" />
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
+                    <span className="w-30 flex justify-center">size</span>
+                    <input type="text" name="size" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl" />
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
+                    <span className="w-30 flex justify-center">Color</span>
+                    <input type="text" name="color" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl" />
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
@@ -56,7 +78,7 @@ export default function AdminPage(){
                 </div>
                 <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
                     <span className="w-30 flex justify-center">Meta description</span>
-                    <input type="text" name="metaDescription" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl" />
+                    <input type="text" name="metaDescription" className="w-full sm:flex-1  border border-gray-400 py-1 rounded-xl min-h-25" />
                 </div>
                 <div className="flex flex-col sm:flex-row items-center p-5 gap-2">
                     <span className="w-30 flex justify-center">Canonical url</span>

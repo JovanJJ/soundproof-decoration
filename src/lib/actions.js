@@ -14,13 +14,17 @@ export default async function addProduct(formData) {
 
     const product = await Product.create({
         title: formData.get("title"),
+        miblieTitle: formData.get("mobileTitle"),
         slug: formData.get("slug"),
         shortDescription: formData.get("shortDescription"),
+        descriptionIntro: formData.get("descriptionIntro"),
         description: formData.get("description"),
         features: featuresArray,
         image: formData.get("image"),
         category: formData.get("category"),
+        color: formData.get("color"),
         brand: formData.get("brand"),
+        size: formData.get("size"),
         affiliateUrl: formData.get("affiliateUrl"),
         seo: {
             metaTitle: formData.get("metaTitle"),
@@ -28,5 +32,5 @@ export default async function addProduct(formData) {
             canonicalUrl: formData.get("canonicalUrl"),
         }
     });
-    console.log(product);
+    
 }

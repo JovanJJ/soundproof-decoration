@@ -6,11 +6,9 @@ import third from "../../../public/third.png";
 import fourth from "../../../public/fourth.png";
 import fifth from "../../../public/fifth.png";
 import sixth from "../../../public/sixth.png";
-
-import curtains from "../../../public/curtains.png";
 import panels from "../../../public/panels.png";
 
-export default function Main() {
+export default async function Main() {
     return (
         <main className="relative z-10 -mt-[8vh] lg:-mt-[7vh] w-full  bg-gradient-to-b from-[#D3D3D3]/99 via-white to-white rounded-tl-[80px] rounded-tr-[80px] pt-4">
             <div className="w-full">
@@ -64,14 +62,13 @@ export default function Main() {
                     </div>
                 </div>
                 <div className="w-full pt-20">
-                    <h2 className="text-center text-2xl">You can find more examples on <Link href="#" className="underline">blog page</Link></h2>
+                    <h2 className="text-center text-2xl text-gray-700">You can find more examples on <Link href="#" className="underline text-gray-700">blog page</Link></h2>
 
-                    <h2 className="text-center text-3xl mt-20">Check for Solutions</h2>
-                    <section className="max-w-6xl mx-auto px-4 py-20">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-
+                    <div className="mt-20 w-fit mx-auto bg-gray-200 py-4 px-4 rounded-full"><h2 className="text-3xl text-gray-700">Check for Solutions 🠋</h2></div>
+                    <section className="max-w-2xl mx-auto px-4 py-20">
+                        <div className="grid grid-cols-1">
                             <Link
-                                href="/products/soundproof-panels"
+                                href="/products?category=all"
                                 className="group relative overflow-hidden rounded-2xl"
                             >
                                 <Image
@@ -87,44 +84,16 @@ export default function Main() {
 
                                 <div className="absolute bottom-8 left-8 right-8 text-white">
                                     <h3 className="text-2xl font-light tracking-wide">
-                                        Decorative Soundproof Panels
+                                        Decorative Soundproof Panels & Curtains
                                     </h3>
                                     <p className="mt-2 text-sm opacity-90 max-w-sm">
-                                        Elegant wall solutions that absorb sound while elevating your interior.
+                                        Elegant solutions that absorb sound while elevating your interior.
                                     </p>
                                     <span className="inline-block mt-4 text-sm uppercase tracking-widest border-b border-white/60 pb-1">
                                         Explore Collection
                                     </span>
                                 </div>
                             </Link>
-
-                            <Link
-                                href="/products/acoustic-curtains"
-                                className="group relative overflow-hidden rounded-2xl"
-                            >
-                                <Image
-                                    src={curtains}
-                                    alt="Luxury acoustic curtains for living room"
-                                    width={800}
-                                    height={600}
-                                    className="h-[420px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                />
-
-                                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/45 transition" />
-
-                                <div className="absolute bottom-8 left-8 right-8 text-white">
-                                    <h3 className="text-2xl font-light tracking-wide">
-                                        Acoustic Curtains
-                                    </h3>
-                                    <p className="mt-2 text-sm opacity-90 max-w-sm">
-                                        Soft textures designed to reduce noise without sacrificing style.
-                                    </p>
-                                    <span className="inline-block mt-4 text-sm uppercase tracking-widest border-b border-white/60 pb-1">
-                                        View Designs
-                                    </span>
-                                </div>
-                            </Link>
-
                         </div>
                     </section>
                 </div>

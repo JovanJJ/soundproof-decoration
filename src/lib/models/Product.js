@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { type } from "os";
 
 const ProductSchema = new mongoose.Schema(
     {
@@ -6,6 +7,10 @@ const ProductSchema = new mongoose.Schema(
             type: String,
             required: true,
             trim: true,
+        },
+        mobileTitle: {
+            type: String,
+            required: true,
         },
         slug: {
             type: String,
@@ -15,6 +20,9 @@ const ProductSchema = new mongoose.Schema(
         shortDescription: {
             type: String,
             required: true,
+        },
+        descriptionInto: {
+            type: String,
         },
         description: {
             type: String,
@@ -33,10 +41,16 @@ const ProductSchema = new mongoose.Schema(
         category: {
             type: String,
         },
+        color: {
+            type: String,
+        },
         brand: {
             type: String,
         },
         affiliateUrl: {
+            type: String,
+        },
+        size: {
             type: String,
         },
         seo: {
