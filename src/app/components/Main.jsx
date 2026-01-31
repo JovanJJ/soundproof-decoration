@@ -62,7 +62,7 @@ export default async function Main() {
                     </div>
                 </div>
                 <div className="w-full pt-20">
-                    <h2 className="text-center text-2xl text-gray-700">You can find more examples on <Link href="#" className="underline text-gray-700">blog page</Link></h2>
+                    <h2 className="text-center text-2xl text-gray-700">You can find more examples on <Link href="/blog" className="underline text-gray-700">blog page</Link></h2>
 
                     <div className="mt-20 w-fit mx-auto bg-gray-200 py-4 px-4 rounded-full"><h2 className="text-3xl text-gray-700">Check for Solutions 🠋</h2></div>
                     <section className="max-w-2xl mx-auto px-4 py-20">

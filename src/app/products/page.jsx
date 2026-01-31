@@ -15,15 +15,13 @@ export default async function ProductsPage({ searchParams }) {
   return (
     <section className="max-w-7xl mx-auto px-6 py-20 pt-30 text-gray-800">
       <div className="mx-auto text-center md:px-15">
-        <span className="block text-xl">
-          Curated decoration panels and curtains
+        <span className="block text-2xl">
+          We selected best for you
         </span>
-        <span>
-          We analyze design trends, product quality, reviews, and pricing to curate a selection of decoration panels and curtains that offer the best balance of style and value — all in one place.
-        </span>
+        
       </div>
 
-      <div className="w-full grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-3 mt-10 md:min-h-screen">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-3 mt-10 ">
         <SearchProducts/>
         <ProductsList products={data} />
       </div>

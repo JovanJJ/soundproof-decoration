@@ -3,10 +3,10 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="border-t border-gray-300 mt-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 py-10 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+      <div className="max-w-7xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-3">
         
         
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 w-fit mx-auto text-center">
           <span className="text-lg font-semibold text-gray-800">
             DecoSound
           </span>
@@ -17,7 +17,7 @@ export default function Footer() {
         </div>
 
         
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 w-fit mx-auto text-center">
           <span className="text-sm font-semibold text-gray-800">
             Navigation
           </span>
@@ -31,7 +31,7 @@ export default function Footer() {
         </div>
 
         
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 w-fit mx-auto text-center">
           <span className="text-sm font-semibold text-gray-800">
             Our Focus
           </span>
@@ -46,10 +46,9 @@ export default function Footer() {
 
       
       <div className="border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-4 text-sm text-gray-500 flex justify-between flex-wrap gap-2">
-          <span>© {new Date().getFullYear()} DecoSound. All rights reserved.</span>
-          <span>Designed for better sound & comfort</span>
-        </div>
+        
+          <span className="block text-center py-2">© {new Date().getFullYear()} DecoSound. All rights reserved.</span>
+        
       </div>
     </footer>
   );

@@ -3,7 +3,7 @@ import Card from "./Card";
 
 export default function ProductsList({ products }) {
     return (
-        <div className="w-full flex flex-col border border-gray-200 rounded-4xl shadow-xl">
+        <div className="w-full flex flex-col border border-gray-200 rounded-xl shadow-xl">
             
             <div className="flex flex-col gap-2">
 
@@ -16,8 +16,8 @@ export default function ProductsList({ products }) {
                 </div>
                 </div>
                 
-                <div className="mt-15 p-5  overflow-y-auto h-[700px] ">
-                <div className="flex flex-col gap-12">
+                <div className="mt-15 p-5 overflow-y-auto h-[800px]">
+                <div className="flex flex-col gap-10 pb-5">
                                     
                     {
                         products.map((product) => {

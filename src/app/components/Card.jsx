@@ -8,7 +8,7 @@ export default function Card({ product }) {
     const router = useRouter();
     return (
         <div className="group w-full">
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-3 border md:h-[200px] border-gray-300 rounded-bl-xl rounded-br-xl sm:rounded-bl-none sm:rounded-tr-2xl sm:rounded-br-2xl shadow-xl group-hover:scale-105 transition ">
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-3 border md:h-[200px] border-gray-300 rounded-bl-xl rounded-br-xl sm:rounded-bl-none sm:rounded-tr-2xl sm:rounded-br-2xl shadow-xl">
                 <div className="h-[300px] sm:h-[450px] md:h-full relative">
                     <Image src={product.image[0]} fill alt="product image" className="h-full" />
                 </div>
