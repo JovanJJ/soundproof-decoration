@@ -1,11 +1,9 @@
-import Image from "next/image";
-import img from "../../../public/hero2.png";
 import BlogCardsSlider from "./ui/BlogCardsSlider";
 
-export default function BlogHero(){
+export default function BlogHero({data}){
     return(
         <section className="relative w-full h-[80vh]">
-            <BlogCardsSlider />
+            <BlogCardsSlider data={data} />
         </section>
     );
 }

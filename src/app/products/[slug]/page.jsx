@@ -4,7 +4,6 @@ import getProduct from "@/lib/utils/getProduct";
 export async function generateMetadata({ params }) {
     const { slug } = await params;
     const product = await getProduct(slug);
-    console.log(product.seo.metaTitle);
 
     if (!product) {
         return {

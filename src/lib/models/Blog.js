@@ -1,14 +1,11 @@
 import mongoose from "mongoose";
-import { type } from "os";
-import { title } from "process";
-import { images } from "../../../next.config";
 
 const BlogSchema = new mongoose.Schema({
-    cardTitle: {
+    mobileTitle: {
         type: String,
         required: true
     },
-    cardDescription: {
+    mobileDescription: {
         type: String,
         required: true,
     },
@@ -23,6 +20,7 @@ const BlogSchema = new mongoose.Schema({
     slug: {
         type: String,
         required: true,
+        unique: true,
     },
     images: [
         {
@@ -31,7 +29,13 @@ const BlogSchema = new mongoose.Schema({
             trim: true,
         },
     ],
-    imageText: [
+    imagesText: [
+        {
+            type: String,
+            required: true,
+        }
+    ],
+    imagesTextTitle: [
         {
             type: String,
             required: true,
@@ -41,7 +45,7 @@ const BlogSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    tips1Anwswer: [
+    tips1Answer: [
         {
             type: String,
             required: true,
@@ -74,7 +78,9 @@ const BlogSchema = new mongoose.Schema({
             required: true,
             type: String,
         }
-    }
-});
+    },
+},
+    { timestamps: true },
+);
 export default mongoose.models.Blog ||
-mongoose.model("Blog", BlogSchema);
+    mongoose.model("Blog", BlogSchema);

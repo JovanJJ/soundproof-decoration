@@ -9,7 +9,7 @@ import { useState } from "react";
 export default function NavBar() {
     const [open, setOpen] = useState(false);
     const pathname = usePathname();
-    const isBlog = pathname.startsWith("/blog");
+    const isBlog = pathname.startsWith("/blog/");
     const isAbout = pathname.startsWith("/about");
     const isContact = pathname.startsWith("/contact");
     const isProduct = pathname.startsWith("/products");
@@ -20,7 +20,7 @@ export default function NavBar() {
                     <h2>Sound proof</h2>
                 </div>
                 <div>
-                    <ul className={`flex gap-7 text-xl ${isAbout || isContact ? 'text-white' : 'text-gray-600'}`}>
+                    <ul className={`flex gap-7 text-xl ${isAbout || isContact || isBlog ? 'text-white' : 'text-gray-600'}`}>
                         <Link href="/" className={`hover:text-black cursor-pointer transition ${pathname === "/" ? 'underline' : ""}`}>Home</Link>
                         <Link href="/products?category=all" className={`hover:text-black cursor-pointer transition ${isProduct ? 'underline' : ""}`}>Products</Link>
                         <Link href="/blog" className={`hover:text-black cursor-pointer transition ${isBlog ? 'underline' : ""}`}>Blog</Link>

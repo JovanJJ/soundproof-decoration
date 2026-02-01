@@ -8,9 +8,10 @@ import arrowLeft from "../../../../public/arrow-left.svg";
 import arrowRight from "../../../../public/arrow-right.svg";
 import Image from "next/image";
 import BlogHeroCard from "../BlogHeroCard";
-export default function BlogCardsSlider() {
-  
-     return (
+import { Fragment } from "react";
+export default function BlogCardsSlider({ data }) {
+
+  return (
     <div className="relative w-full h-screen">
       <Swiper
         modules={[Navigation]}
@@ -21,34 +22,28 @@ export default function BlogCardsSlider() {
           prevEl: ".prev-btn",
         }}
       >
-        <SwiperSlide>
-          <div className="h-screen">
-            <BlogHeroCard />
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <div className="h-screen">
-            <BlogHeroCard />
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <div className="h-screen">
-            <BlogHeroCard />
-          </div>
-        </SwiperSlide>
+        {data.map((blog) => {
+          return(
+            <Fragment key={blog._id}>
+            <SwiperSlide>
+            <div className="h-screen">
+              <BlogHeroCard title={blog.title} description={blog.mobileDescription} slug={blog.slug} />
+            </div>
+          </SwiperSlide>
+          </Fragment>
+          )
+        })}
       </Swiper>
 
-      
+
       <button className="prev-btn absolute left-2 top-1/2 z-100 -translate-y-1/2 cursor-pointer">
         <Image src={arrowLeft} alt="left" className="w-[50px]" />
 
       </button>
       <button className="next-btn absolute right-0 top-1/2 z-100 -translate-y-1/2 cursor-pointer">
-        <Image src={arrowRight} alt="right" className="w-[50px]"/>
+        <Image src={arrowRight} alt="right" className="w-[50px]" />
       </button>
     </div>
   );
-  
+
 }
