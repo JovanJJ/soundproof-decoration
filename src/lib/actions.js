@@ -64,11 +64,14 @@ export async function addBlogPost(formData) {
         .filter(Boolean)     
 
     const blog = await Blog.create({
+        readingTime: formData.get("readingTime"),
         mobileTitle: formData.get("mobileTitle"),
         mobileDescription: formData.get("mobileDescription"),
         title: formData.get("title"),
         intro: formData.get("intro"),
         slug: formData.get("slug"),
+        blogHeroImage: formData.get("blogHeroImage"),
+        cardPreviewImage: formData.get("cardPrevierwImage"),
         images: images,
         imagesText: imagesText,
         imagesTextTitle: imagesTextTitle,

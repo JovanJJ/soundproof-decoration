@@ -2,12 +2,12 @@ import Image from "next/image";
 import img from "../../../public/card-1.jpg";
 import Link from "next/link";
 
-export default function BlogHeroCard({title, description, slug}) {
+export default function BlogHeroCard({title, description, slug, image}) {
     return (
         <div className="relative w-full h-[90vh]">
             <div className="absolute inset-0 md:inset-18">
                 <Image
-                    src={img}
+                    src={image ? image : img}
                     alt="Beautiful living room with decorative wall panels"
                     fill
                     priority

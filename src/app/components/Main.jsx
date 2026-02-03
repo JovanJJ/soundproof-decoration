@@ -10,7 +10,7 @@ import panels from "../../../public/panels.png";
 
 export default async function Main() {
     return (
-        <main className="relative z-10 -mt-[8vh] lg:-mt-[7vh] w-full  bg-gradient-to-b from-[#D3D3D3]/99 via-white to-white rounded-tl-[80px] rounded-tr-[80px] pt-4">
+        <main className="relative z-50  w-full  bg-gradient-to-b from-[#D3D3D3]/99 via-white to-white rounded-tl-[80px] rounded-tr-[80px] pt-4">
             <div className="w-full">
                 <div className="w-fit mx-auto px-5">
                     <h2 className="text-2xl sm:text-4xl md:text-4xl text-gray-900 text-center">
@@ -62,13 +62,13 @@ export default async function Main() {
                     </div>
                 </div>
                 <div className="w-full pt-20">
-                    <h2 className="text-center text-2xl text-gray-700">You can find more examples on <Link href="/blog" className="underline text-gray-700">blog page</Link></h2>
+                    <h2 className="text-center text-xl lg:text-2xl text-gray-700">You can find more examples on <Link href="/blog" className="underline text-gray-700">blog page</Link></h2>
 
-                    <div className="mt-20 w-fit mx-auto bg-gray-200 py-4 px-4 rounded-full"><h2 className="text-3xl text-gray-700">Check for Solutions 🠋</h2></div>
+                    <div className="mt-20 w-fit mx-auto bg-gray-200 py-4 px-4 rounded-full"><h2 className="text-xl lg:text-2xl text-gray-700">Check for Solutions 🠋</h2></div>
                     <section className="max-w-2xl mx-auto px-4 py-20">
                         <div className="grid grid-cols-1">
                             <Link
-                                href="/products?category=all"
+                                href="/products"
                                 className="group relative overflow-hidden rounded-2xl"
                             >
                                 <Image
@@ -83,7 +83,7 @@ export default async function Main() {
                                 <div className="absolute inset-0 bg-black/35 group-hover:bg-black/45 transition" />
 
                                 <div className="absolute bottom-8 left-8 right-8 text-white">
-                                    <h3 className="text-2xl font-light tracking-wide">
+                                    <h3 className="text-xl lg:text-2xl font-light tracking-wide">
                                         Decorative Soundproof Panels & Curtains
                                     </h3>
                                     <p className="mt-2 text-sm opacity-90 max-w-sm">

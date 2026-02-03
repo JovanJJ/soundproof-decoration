@@ -22,7 +22,7 @@ export default async function ProductPage({ params }) {
     const product = await getProduct(slug);
 
     return (
-        <section className="max-w-7xl mx-auto pt-30 text-gray-800">
+        <section className="max-w-7xl mx-auto pt-6 md:pt-30 text-gray-800">
             <ProductImageTitle data={product} />
         </section>
     );

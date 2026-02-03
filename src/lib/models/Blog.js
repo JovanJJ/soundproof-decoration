@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 
 const BlogSchema = new mongoose.Schema({
+    readingTime: {
+        type: String
+    },
     mobileTitle: {
         type: String,
         required: true
@@ -21,6 +24,14 @@ const BlogSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
+    },
+    blogHeroImage: {
+        type: String,
+        required: true,
+    },
+    cardPreviewImage: {
+        type: String,
+        required: true,
     },
     images: [
         {

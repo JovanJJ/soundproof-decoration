@@ -9,7 +9,7 @@ export default function BlogPostComponent({data}) {
         <>
             <section className="relative h-[60vh] md:h-[70vh] w-full">
                 <Image
-                    src="https://res.cloudinary.com/dg8dv2drk/image/upload/v1769973183/card-1_mfpojn.jpg"
+                    src={data[0].blogHeroImage ? data[0].blogHeroImage : "https://res.cloudinary.com/dg8dv2drk/image/upload/v1769973183/card-1_mfpojn.jpg"}
                     alt="Soundproof curtains in a modern living room"
                     fill
                     className="object-cover"
@@ -29,7 +29,9 @@ export default function BlogPostComponent({data}) {
                    {data[0].intro}
                 </div>
                 <h2 className="text-3xl mt-10 text-center">
-                    Best Soundproof Curtain Solutions for 2026
+                    {data[0].category === "panels" && "Best Soundproof Panels Solutions for 2026"}
+                   {data[0].category === "curtains" && "Best Soundproof Curtain Solutions for 2026"}
+                   {data[0].category === "panels&curtains" && "Best Soundproof Panels&Curtains Solutions for 2026"} 
                 </h2>
             </section>
             <section className="w-full mt-10">
@@ -39,7 +41,7 @@ export default function BlogPostComponent({data}) {
                             <Image src={data[0].images[0]} alt="img" fill className="object-cover rounded-2xl" />
                         </div>
                         <span className="block font-bold text-2xl pl-6 mt-5">
-                            Layered Comfort
+                            {data[0].imagesTextTitle[0]}
                         </span>
                         <span className="block  text-xl px-6 py-2 pb-6">
                             {data[0].imagesText[0]}
@@ -50,7 +52,7 @@ export default function BlogPostComponent({data}) {
                             <Image src={data[0].images[1]} alt="img" fill className="object-cover rounded-2xl" />
                         </div>
                         <span className="block font-bold text-2xl pl-6 mt-5">
-                            Quiet Without Compromise
+                            {data[0].imagesTextTitle[1]}
                         </span>
                         <span className="block  text-xl px-6 py-2 pb-6">
                             {data[0].imagesText[1]}
@@ -61,7 +63,7 @@ export default function BlogPostComponent({data}) {
                             <Image src={data[0].images[2]} alt="img" fill className="object-cover rounded-2xl" />
                         </div>
                         <span className="block font-bold text-2xl pl-6 mt-5">
-                            Layered Comfort
+                            {data[0].imagesTextTitle[2]}
                         </span>
                         <span className="block  text-xl px-6 py-2 pb-6">
                             {data[0].imagesText[2]}
@@ -74,7 +76,7 @@ export default function BlogPostComponent({data}) {
             <h2 className="mt-10 xl:mt-30 xl:text-start text-xl">
                 {data[0].tips1}
             </h2>
-            <ul className="space-y-4 mt-5 pl-5 border-b border-gray-300 pb-5 max-w-3xl">
+            <ul className="space-y-4 mt-5 pl-5 border-b border-gray-300 pb-5 max-w-5xl">
                 {data[0].tips1Answer.map((answer) => {
                     return(
                         <li key={answer} className="flex">
@@ -91,7 +93,7 @@ export default function BlogPostComponent({data}) {
             <h2 className="text-xl xl:text-start ">
                 {data[0].tips2}
             </h2>
-            <ul className="space-y-4 mt-5 pl-5">
+            <ul className="space-y-4 mt-5 pl-5 max-w-5xl">
                {data[0].tips2Answer.map((answer) => {
                     return(
                         <li key={answer} className="flex">
@@ -112,11 +114,11 @@ export default function BlogPostComponent({data}) {
             <section className="max-w-2xl mx-auto px-4 py-5">
                         <div className="grid grid-cols-1">
                             <Link
-                                href="/products?category=curtains"
+                                href={`/products?category=${data[0].category === "curtains" ? "curtains" : "panels"}`}
                                 className="group relative overflow-hidden rounded-2xl"
                             >
                                 <Image
-                                    src="https://res.cloudinary.com/dg8dv2drk/image/upload/v1769964436/curtains-square-3_qzmvhk.png"
+                                    src={data[0].category === "curtains" ?"https://res.cloudinary.com/dg8dv2drk/image/upload/v1769964436/curtains-square-3_qzmvhk.png" : "https://res.cloudinary.com/dg8dv2drk/image/upload/v1770032078/4_v0t2pg.png"}
                                     alt="Luxury decorative soundproof curtains"
                                     width={800}
                                     height={600}
@@ -128,10 +130,14 @@ export default function BlogPostComponent({data}) {
 
                                 <div className="absolute bottom-8 left-8 right-8 text-white">
                                     <h3 className="text-2xl font-light tracking-wide">
-                                        Decorative Soundproof Curtains
+                                        {data[0].category === "curtains" && "Decorative Soundproof Curtains"}
+                                        {data[0].category === "panels" && "Decorative Soundproof Panels"}
+                                        {data[0].category === "panels&curtains" && "Decorative Soundproof Panels&Curtains"}
                                     </h3>
                                     <p className="mt-2 text-sm opacity-90 max-w-sm">
-                                        Check our solutions for soundproof curtains
+                                        {data[0].category === "curtains" && "Check our solutions for soundproof Curtains"}
+                                        {data[0].category === "panels" && "Check our solutions for soundproof Panels"}
+                                        {data[0].category === "panels&curtains" && "Check our solutions for soundproof Panels&Curtains"}
                                     </p>
                                     <span className="inline-block mt-4 text-sm uppercase tracking-widest border-b border-white/60 pb-1">
                                         Explore Collection

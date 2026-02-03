@@ -9,9 +9,17 @@ export const metadata = {
 
 export default async function ProductsPage({ searchParams }) {
     const params = await searchParams;
-    const response = await fetch(`http://localhost:3000/api/products?category=${params.category}`);
+    console.log(params.category);
+    const response = await fetch(`${process.env.BASE_URI}/api/products?category=${params.category}&page=${params.page}`,{
+      cache: 'no-store',
+    });
     const data = await response.json();
-  
+    const paginationData = {
+      totalItems: data.totalItems,
+      totalPages: data.totalPages,
+      currentPage: data.currentPage
+    }
+
   return (
     <section className="max-w-7xl mx-auto px-6 py-20 pt-30 text-gray-800">
       <div className="mx-auto text-center md:px-15">
@@ -23,7 +31,7 @@ export default async function ProductsPage({ searchParams }) {
 
       <div className="w-full grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-3 mt-10 ">
         <SearchProducts/>
-        <ProductsList products={data} />
+        <ProductsList products={data.products} paginationData={paginationData} />
       </div>
     </section>
   );

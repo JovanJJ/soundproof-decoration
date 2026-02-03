@@ -2,24 +2,37 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/connectdb";
 import Product from "@/lib/models/Product";
 
-export async function GET(req){
-    const { searchParams } = new URL(req.url);
-    const category = searchParams.get("category");
+const itemsPerPage = 6;
 
-    await connectDB();
+export async function GET(req) {
+  const { searchParams } = new URL(req.url);
 
-    let data;
-    if(category === "all") {
-        data = await Product.find();
-    }
+  const category = searchParams.get("category");
+  
+  const currentPage = Number(searchParams.get("page") || 1);
 
-    if(category === "panels") {
-        data = await Product.find({category});
-    }
+  const skipCount = (currentPage - 1) * itemsPerPage;
+  console.log(category);
+  const filter = {};
 
-    if(category === "curtains") {
-        data = await Product.find({category});
-    }
+  if (category && category !== "null" && category !== "undefined") {
+  filter.category = category;
+}
+  
 
-    return NextResponse.json(data);
+  await connectDB();
+
+  const data = await Product.find(filter)
+    .skip(skipCount)
+    .limit(itemsPerPage);
+
+  const totalItems = await Product.countDocuments(filter);
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  
+  return NextResponse.json({
+    products: data,
+    totalItems,
+    totalPages,
+    currentPage
+  });
 }

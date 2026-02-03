@@ -9,10 +9,12 @@ import { useState } from "react";
 export default function NavBar() {
     const [open, setOpen] = useState(false);
     const pathname = usePathname();
-    const isBlog = pathname.startsWith("/blog/");
+    const isBlog = pathname.startsWith("/blog");
+    const isBlogPost = pathname.startsWith("/blog/");
     const isAbout = pathname.startsWith("/about");
     const isContact = pathname.startsWith("/contact");
     const isProduct = pathname.startsWith("/products");
+    
     return (
         <nav className="relative">
             <div className="hidden md:absolute right-0 left-0 z-50 px-10 h-[60px] md:flex items-center justify-between overflow-hidden">
@@ -20,19 +22,19 @@ export default function NavBar() {
                     <h2>Sound proof</h2>
                 </div>
                 <div>
-                    <ul className={`flex gap-7 text-xl ${isAbout || isContact || isBlog ? 'text-white' : 'text-gray-600'}`}>
-                        <Link href="/" className={`hover:text-black cursor-pointer transition ${pathname === "/" ? 'underline' : ""}`}>Home</Link>
-                        <Link href="/products?category=all" className={`hover:text-black cursor-pointer transition ${isProduct ? 'underline' : ""}`}>Products</Link>
-                        <Link href="/blog" className={`hover:text-black cursor-pointer transition ${isBlog ? 'underline' : ""}`}>Blog</Link>
-                        <Link href="/about" className={`hover:text-black cursor-pointer transition ${pathname === "/about" ? 'underline' : ""}`}>About</Link>
-                        <Link href="/contact" className={`hover:text-black cursor-pointer transition ${pathname === "/contact" ? 'underline' : ""}`}>Contact</Link>
+                    <ul className={`flex gap-7 z-50 text-xl ${isBlogPost && "text-white"}  ${isBlog || isProduct ? 'text-gray-700' : 'text-white'}`}>
+                        <Link href="/" className={` cursor-pointer transition  ${pathname === "/" ? 'underline' : ""}`}>Home</Link>
+                        <Link href="/products" className={`hover:text-black ${isBlogPost && "hover:text-gray-300"} cursor-pointer transition ${isProduct ? 'underline' : ""}`}>Products</Link>
+                        <Link href="/blog" className={`hover:text-black ${isBlogPost && "hover:text-gray-300"} cursor-pointer transition ${isBlog ? 'underline' : ""}`}>Blog</Link>
+                        <Link href="/about" className={`hover:text-black ${isBlogPost && "hover:text-gray-300"} cursor-pointer transition ${pathname === "/about" ? 'underline' : ""}`}>About</Link>
+                        <Link href="/contact" className={`hover:text-black ${isBlogPost && "hover:text-gray-300"} cursor-pointer transition ${pathname === "/contact" ? 'underline' : ""}`}>Contact</Link>
                     </ul>
-                </div>
+                </div> 
                 <div className="right">
 
                 </div>
             </div>
-            <div className="w-full h-[60px] md:hidden  flex items-center">
+            <div className="w-full h-[60px] md:hidden flex items-center">
                 <div>
                     <Image onClick={() => setOpen(prev => !prev)} src={menu} width={40} height={40} alt="menu" className="ml-2 cursor-pointer" />
                 </div>

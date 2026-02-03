@@ -4,7 +4,10 @@ export default async function BlogAdminPage() {
     return (
         <section className="w-full pt-15">
             <form action={addBlogPost} className="max-w-4xl pl-5 flex flex-col gap-7">
-
+                <div className="flex gap-4 items-center">
+                        <span className="min-w-[80px]">Reading Time</span>
+                        <input name="readingTime" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-400" />
+                    </div>
                 <div className="flex gap-4 items-center">
                     <span className="min-w-[80px]">Mobile Title</span>
                     <input name="mobileTitle" type="text" className="border border-gray-600 rounded-xl min-w-3xl text-xl py-3" />
@@ -25,6 +28,14 @@ export default async function BlogAdminPage() {
                 <div className="flex gap-4 items-center">
                     <span className="min-w-[80px]">Slug</span>
                     <textarea name="slug" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-400 min-h-[200px]" />
+                </div>
+                <div className="flex gap-4 items-center">
+                    <span className="min-w-[80px]">Blog Hero Image</span>
+                    <textarea name="blogHeroImage" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-400 min-h-[200px]" />
+                </div>
+                <div className="flex gap-4 items-center">
+                    <span className="min-w-[80px]">Card Preview Image</span>
+                    <textarea name="cardPrevierwImage" className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-400 min-h-[200px]" />
                 </div>
                 <div className="p-5 border flex flex-col gap-5">
                     <div className="flex gap-4 items-center">

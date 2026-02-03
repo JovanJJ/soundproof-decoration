@@ -16,7 +16,7 @@ export default function BlogMainSection({data}) {
                                     className="group relative overflow-hidden rounded-2xl"
                                 >
                                     <Image
-                                        src={img}
+                                        src={blog.cardPreviewImage}
                                         alt="Luxury decorative soundproof panels"
                                         width={576}
                                         height={600}
@@ -33,7 +33,7 @@ export default function BlogMainSection({data}) {
                                         <p className="mt-2 text-sm opacity-90 max-w-sm">
                                             {blog.mobileDescription}
                                         </p>
-                                        {blog.readingTime && <span className="block mt-2">Reading time: 6 min.</span>}
+                                        {blog.readingTime && <span className="block mt-2">Reading time: {blog.readingTime} min.</span>}
                                         <span  className="inline-block mt-4 text-sm uppercase tracking-widest border-b border-white/60 pb-1">
                                             See Post
                                         </span>

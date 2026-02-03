@@ -5,7 +5,7 @@ export default function ContactPage() {
     return (
         <>
             
-            <section className="relative h-[40vh] md:h-[50vh] w-full">
+            <section className="relative h-[40vh] md:h-[60vh] w-full">
                 <Image
                     src={hero}
                     alt="Modern interior with curtains and acoustic panels"

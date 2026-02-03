@@ -23,14 +23,13 @@ export default function BlogCardsSlider({ data }) {
         }}
       >
         {data.map((blog) => {
-          return(
-            <Fragment key={blog._id}>
-            <SwiperSlide>
+          return(   
+            <SwiperSlide key={blog._id}>
             <div className="h-screen">
-              <BlogHeroCard title={blog.title} description={blog.mobileDescription} slug={blog.slug} />
+              <BlogHeroCard title={blog.title} description={blog.mobileDescription} slug={blog.slug} image={blog.blogHeroImage} />
             </div>
           </SwiperSlide>
-          </Fragment>
+          
           )
         })}
       </Swiper>

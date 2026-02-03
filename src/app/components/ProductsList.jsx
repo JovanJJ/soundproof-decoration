@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Card from "./Card";
+import ShowMore from "./ShowMore";
 
-export default function ProductsList({ products }) {
+export default function ProductsList({ products, paginationData }) {
     return (
-        <div className="w-full flex flex-col border border-gray-200 rounded-xl shadow-xl">
+        <div className="w-full flex flex-col border border-gray-200 rounded-xl">
             
             <div className="flex flex-col gap-2">
 
@@ -15,8 +15,8 @@ export default function ProductsList({ products }) {
                     Some links on this website are affiliate links, which means we may earn a small commission if you make a purchase through them, at no additional cost to you.
                 </div>
                 </div>
-                
-                <div className="mt-15 p-5 overflow-y-auto h-[800px]">
+                {/*<div className="mt-15 p-5 pb-0 overflow-y-auto h-[800px] border-t border-gray-200"></div>*/}
+                <div className="mt-15 p-5 pb-0 border-t border-gray-200">
                 <div className="flex flex-col gap-10 pb-5">
                                     
                     {
@@ -28,7 +28,7 @@ export default function ProductsList({ products }) {
                        
                 </div>
                 </div> 
-
+                    <ShowMore paginationData={paginationData} />
             </div>
            
         </div>

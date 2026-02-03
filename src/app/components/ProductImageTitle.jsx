@@ -2,11 +2,12 @@ import Image from "next/image";
 
 export default function ProductImageTitle(product) {
     
+    
     return (
         <>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 border border-gray-200 rounded-4xl">
-            <div className="relative">
-                <Image src={product.data.image[0]} fill alt="product-image" className="w-full h-full rounded-4xl" />   
+            <div className="relative flex items-center min-h-[400px]">
+                <Image src={product.data.image[0]} fill alt="product-image" className="rounded-4xl object-cover   md:px-0" />   
             </div>
             <div className="p-10">
                 <div className="flex flex-col gap-5">
