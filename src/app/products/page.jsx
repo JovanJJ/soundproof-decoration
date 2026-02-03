@@ -8,9 +8,12 @@ export const metadata = {
 };
 
 export default async function ProductsPage({ searchParams }) {
+  const BASE_URI = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}` 
+  : "http://localhost:3000";
     const params = await searchParams;
     console.log(params.category);
-    const response = await fetch(`/api/products?category=${params.category}&page=${params.page}`,{
+    const response = await fetch(`${BASE_URI}/api/products?category=${params.category}&page=${params.page}`,{
       cache: 'no-store',
     });
     const data = await response.json();

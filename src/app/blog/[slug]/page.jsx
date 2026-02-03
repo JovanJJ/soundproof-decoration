@@ -1,8 +1,12 @@
 import BlogPostComponent from "../../components/BlogPostComponent";
 
 export async function generateMetadata({ params }) {
+    const BASE_URI = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}` 
+  : "http://localhost:3000";
+
     const { slug } = await params;
-    const res = await fetch(`/api/blog-page?slug=${slug}`);
+    const res = await fetch(`${BASE_URI}/api/blog-page?slug=${slug}`);
     const data = await res.json();
     const product = data[0];
     
@@ -21,8 +25,11 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogPost({params}) {
+    const BASE_URI = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}` // runtime on Vercel
+  : "http://localhost:3000";
     const { slug } = await params;
-    const res = await fetch(`/api/blog-page?slug=${slug}`);
+    const res = await fetch(`${BASE_URI}/api/blog-page?slug=${slug}`);
     const data = await res.json();
     return (
         <BlogPostComponent data={data} /> 
