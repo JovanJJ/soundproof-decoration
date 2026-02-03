@@ -10,7 +10,7 @@ export const metadata = {
 export default async function ProductsPage({ searchParams }) {
     const params = await searchParams;
     console.log(params.category);
-    const response = await fetch(`${process.env.BASE_URI}/api/products?category=${params.category}&page=${params.page}`,{
+    const response = await fetch(`/api/products?category=${params.category}&page=${params.page}`,{
       cache: 'no-store',
     });
     const data = await response.json();

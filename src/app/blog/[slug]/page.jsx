@@ -2,7 +2,7 @@ import BlogPostComponent from "../../components/BlogPostComponent";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
-    const res = await fetch(`${process.env.BASE_URI}/api/blog-page?slug=${slug}`);
+    const res = await fetch(`/api/blog-page?slug=${slug}`);
     const data = await res.json();
     const product = data[0];
     
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogPost({params}) {
     const { slug } = await params;
-    const res = await fetch(`${process.env.BASE_URI}/api/blog-page?slug=${slug}`);
+    const res = await fetch(`/api/blog-page?slug=${slug}`);
     const data = await res.json();
     return (
         <BlogPostComponent data={data} /> 
