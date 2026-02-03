@@ -107,7 +107,7 @@ export default function BlogPostComponent({data}) {
             </section>
 
             <section className="w-full mt-16 text-gray-700">
-                <span className="block mx-auto text-center max-w-5xl text-base lg:text-xl">
+                <span className="block mx-auto text-center max-w-5xl text-base px-5 lg:text-xl">
                    {data[0].closingParagraph}
                 </span>
             </section>
