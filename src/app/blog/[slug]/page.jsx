@@ -1,36 +1,34 @@
 import BlogPostComponent from "../../components/BlogPostComponent";
+import { fetchBlogMetaData } from "@/lib/actions";
+import { fetchBlogPost } from "@/lib/actions";
 
 export async function generateMetadata({ params }) {
-    const BASE_URI = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}` 
-  : "http://localhost:3000";
-
-    const { slug } = await params;
-    const res = await fetch(`${BASE_URI}/api/blog-page?slug=${slug}`);
-    const data = await res.json();
-    const product = data[0];
     
-    if (!product) {
+    const { slug } = await params;
+
+    const data = await fetchBlogMetaData(slug);
+    
+    if (!data) {
         return {
             title: "Product not found",
             description: "This product does not exist.",
         };
     }
+
     return {
-        title: product.seo.metaTitle,
-        description: product.seo.metaDescription,
+        title: data.safeList[0].seo.metaTitle,
+        description: data.safeList[0].seo.metaDescription,
         
     };
-    
+ 
 }
 
 export default async function BlogPost({params}) {
-    const BASE_URI = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}` // runtime on Vercel
-  : "http://localhost:3000";
+    
     const { slug } = await params;
-    const res = await fetch(`${BASE_URI}/api/blog-page?slug=${slug}`);
-    const data = await res.json();
+    const data =  await fetchBlogPost(slug)
+    
+    
     return (
         <BlogPostComponent data={data} /> 
     );

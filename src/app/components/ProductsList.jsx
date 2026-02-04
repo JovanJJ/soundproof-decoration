@@ -16,7 +16,7 @@ export default function ProductsList({ products, paginationData }) {
                 </div>
                 </div>
                 {/*<div className="mt-15 p-5 pb-0 overflow-y-auto h-[800px] border-t border-gray-200"></div>*/}
-                <div className="mt-15 p-5 pb-0 border-t border-gray-200">
+                <div id="productsContainer" className="mt-15 p-5 pb-0 border-t border-gray-200">
                 <div className="flex flex-col gap-10 pb-5">
                                     
                     {

@@ -22,7 +22,7 @@ export default function BlogCardsSlider({ data }) {
           prevEl: ".prev-btn",
         }}
       >
-        {data.map((blog) => {
+        {data.safeList.map((blog) => {
           return(   
             <SwiperSlide key={blog._id}>
             <div className="h-screen">
