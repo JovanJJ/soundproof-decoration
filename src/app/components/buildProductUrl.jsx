@@ -4,5 +4,5 @@ export default function buildProductUrl({ category, page }) {
     if (category) params.set("category", category);
     if (page && page > 1) params.set("page", page);
 
-    return `/products?${params.toString()}`;
+    return `/products?${params.toString()}#productsContainer`;
 }

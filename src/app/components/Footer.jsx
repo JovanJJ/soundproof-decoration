@@ -8,7 +8,7 @@ export default function Footer() {
         
         <div className="flex flex-col gap-3 w-fit mx-auto text-center">
           <span className="text-lg font-semibold text-gray-800">
-            DecoSound
+            Soundproof Creations
           </span>
           <p className="text-sm text-gray-600 max-w-xs">
             Decorative acoustic panels and curtains designed to improve sound
@@ -47,7 +47,7 @@ export default function Footer() {
       
       <div className="border-t border-gray-200">
         
-          <span className="block text-center py-2">© {new Date().getFullYear()} DecoSound. All rights reserved.</span>
+          <span className="block text-center py-2">© {new Date().getFullYear()} Soundproof Creations. All rights reserved.</span>
         
       </div>
     </footer>

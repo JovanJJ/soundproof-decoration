@@ -1,6 +1,7 @@
 "use client";
 
 import menu from "../../../public/menu.svg";
+import logo from "../../../public/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,8 +19,8 @@ export default function NavBar() {
     return (
         <nav className="relative">
             <div className="hidden md:absolute right-0 left-0 z-50 px-10 h-[60px] md:flex items-center justify-between overflow-hidden">
-                <div>
-                    <h2>Sound proof</h2>
+                <div className="relative h-full w-[200px]">
+                    <Image src={logo} fill alt="logo-picture" className="object-cover"  />
                 </div>
                 <div>
                     <ul className={`flex gap-7 z-50 text-xl ${isBlogPost && "text-white"}  ${isBlog || isProduct ? 'text-gray-700' : 'text-white'}`}>
@@ -34,9 +35,12 @@ export default function NavBar() {
 
                 </div>
             </div>
-            <div className="w-full h-[60px] md:hidden flex items-center">
+            <div className="w-full h-[60px] md:hidden flex items-center justify-between">
                 <div>
-                    <Image onClick={() => setOpen(prev => !prev)} src={menu} width={40} height={40} alt="menu" className="ml-2 cursor-pointer" />
+                    <Image onClick={() => setOpen(prev => !prev)} src={menu} width={30} height={30} alt="menu" className="ml-2 cursor-pointer" />
+                </div>
+                <div className="relative h-full w-[100px]">
+                    <Image src={logo} fill alt="logo-image" className="object-cover" />
                 </div>
             </div>
             {open &&

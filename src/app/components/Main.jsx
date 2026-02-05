@@ -13,8 +13,8 @@ export default async function Main() {
         <main className="relative z-50  w-full  bg-gradient-to-b from-[#D3D3D3]/99 via-white to-white rounded-tl-[80px] rounded-tr-[80px] pt-4">
             <div className="w-full">
                 <div className="w-fit mx-auto px-5">
-                    <h2 className="text-2xl sm:text-4xl md:text-4xl text-gray-900 text-center">
-                        R Aesthetics
+                    <h2 className="text-2xl sm:text-4xl md:text-4xl text-gray-600 text-center">
+                        Soundproof Creations
                     </h2>
                     <p className="mt-3 text-base sm:text-lg md:text-xl text-center">
                         Discover how soundproof panels and acoustic curtains can transform your living or working space without compromising design.
