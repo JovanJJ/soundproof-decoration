@@ -31,7 +31,7 @@ export default function ProductImageTitle(product) {
             </div>
         </div>
         <div className="w-full border border-gray-200 rounded-4xl  mt-5">
-                <span className="block p-10 text-xl pb-2">{product.data[0].title}</span>
+                <span className="block p-10 text-xl pb-2">Reverbeon acoustic panels</span>
                 <span className="block p-10 pt-0">{product.data[0].description}</span>
             </div>
         </>
