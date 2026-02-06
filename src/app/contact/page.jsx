@@ -1,6 +1,11 @@
 import Image from "next/image";
 import hero from "../../../public/hero1.png";
 
+export const metadata = {
+  title: "Contact",
+  description: "Contact Soundproof Creations to get advice on soundproofing solutions, product questions, or help choosing the right acoustic treatment.",
+};
+
 export default function ContactPage() {
     return (
         <>

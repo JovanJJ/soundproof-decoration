@@ -35,11 +35,11 @@ export default function BlogCardsSlider({ data }) {
       </Swiper>
 
 
-      <button className="prev-btn absolute left-0 md:left-25 top-1/2 z-20 -translate-y-1/2 cursor-pointer">
+      <button className="prev-btn absolute -left-2 md:left-25 top-1/2 z-20 -translate-y-1/2 cursor-pointer">
         <Image src={arrowLeft} alt="left" className="w-[50px]" />
 
       </button>
-      <button className="next-btn absolute right-0 md:right-25 top-1/2 z-20 -translate-y-1/2 cursor-pointer">
+      <button className="next-btn absolute -right-2  md:right-25 top-1/2 z-20 -translate-y-1/2 cursor-pointer">
         <Image src={arrowRight} alt="right" className="w-[50px]" />
       </button>
     </div>

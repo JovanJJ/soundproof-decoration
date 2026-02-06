@@ -1,7 +1,13 @@
 import Image from "next/image";
 import hero from "../../../public/hero1.png";
 
+   export const metadata = {
+  title: "About",
+  description: "Learn more about Soundproof Creations and our mission to create effective, well-designed acoustic and soundproofing solutions for everyday spaces.",
+};
+
 export default function AboutPage() {
+
     return (
         <>
             
