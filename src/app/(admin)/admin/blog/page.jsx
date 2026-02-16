@@ -1,7 +1,14 @@
-
+import { verifyAuth } from "../../../../lib/actions";
 import { addBlogPost } from "../../../../lib/actions";
+import { redirect } from "next/navigation";
 
-export default function BlogAdminPage() {
+export default async function BlogAdminPage() {
+
+    const res = await verifyAuth();
+        
+        if(!res){
+            redirect("/admin/login");
+        }
     return (
         <section className="w-full min-h-screen bg-gray-50 p-6 md:p-12 flex justify-center">
             <div className="w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
