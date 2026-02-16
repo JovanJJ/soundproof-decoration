@@ -2,7 +2,6 @@ import Image from "next/image";
 
 export default function ProductImageTitle(product) {
     
-    console.log(product);
     return (
         <>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 border border-gray-200 rounded-4xl">

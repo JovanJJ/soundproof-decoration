@@ -3,6 +3,11 @@
 import { connectDB } from "./connectdb";
 import Product from "./models/Product";
 import Blog from "./models/Blog";
+import Users from "./models/Users";
+import bcrypt from "bcryptjs";
+import { redirect } from "next/navigation";
+import jwt from "jsonwebtoken"
+import { cookies } from "next/headers";
 
 export async function addProduct(formData) {
     await connectDB();
@@ -185,3 +190,93 @@ export async function fetchProduct(slug) {
     });
     return(product);
 }
+
+export async function registerAdmin (formData) {
+    const { email, password, repeatedPassword } = await formData;
+    if(!email){
+        return {message: "Neispravan email"}
+    }
+    if(password.length < 6){
+        return {message: "Sifra mora imati minimum 6 karaktera"}
+    }
+    if(password !== repeatedPassword){
+        return {message: "Lozinke se ne poklapaju"}
+    }
+
+    await connectDB();
+
+
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await Users.create({
+        email: email,
+        password: hashedPassword,
+    });
+
+    return {success: true, message: "Uspesno ste kreirali nalog"}
+    
+}
+
+export async function login(email, password) {
+
+    
+    await connectDB();
+    // Find user
+    const user = await Users.findOne({ email }).select('+password');
+    if (!user) {
+        return { success: false, message: 'Invalid credentials' };
+    }
+    
+    // Check password
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) {
+        return { success: false, message: 'Invalid credentials' };
+    }
+    
+    // Generate token on server
+    const token = jwt.sign(
+        { userId: user._id, email: user.email },
+        process.env.JWT_SECRET,
+        { expiresIn: '7d' }
+    );
+    
+    // Set cookie on server
+    const cookieStore = await cookies();
+    cookieStore.set('authToken', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 7 * 24 * 60 * 60 * 1000
+    });
+    
+     return { 
+        success: true, 
+        
+    };
+}
+
+export async function verifyAuth() {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('authToken')?.value;
+    
+    if (!token) {
+        return;
+    }
+    
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        
+        
+        // If you fetch user from DB here, also serialize:
+        const user = await Users.findById(decoded.userId);
+        
+        return {
+            id: user._id.toString(), // Convert to string
+        };
+    } catch (error) {
+        return null;
+    }
+}
+    
+    

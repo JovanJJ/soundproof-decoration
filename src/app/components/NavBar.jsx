@@ -15,13 +15,13 @@ export default function NavBar() {
     const isAbout = pathname.startsWith("/about");
     const isContact = pathname.startsWith("/contact");
     const isProduct = pathname.startsWith("/products");
-    
+
     return (
         <nav className="relative">
             <div className="hidden md:absolute right-0 left-0 z-50 px-10 h-[60px] md:flex items-center justify-between overflow-hidden">
                 <div className="relative h-full w-[200px]">
                     <Link href={"/"}>
-                    <Image src={logo} fill alt="logo-picture" className="object-cover"  />
+                        <Image src={logo} fill alt="logo-picture" className="object-cover" />
                     </Link>
                 </div>
                 <div>
@@ -32,7 +32,7 @@ export default function NavBar() {
                         <Link href="/about" className={`hover:text-black ${isBlogPost && "hover:text-gray-300"} cursor-pointer transition ${pathname === "/about" ? 'underline' : ""}`}>About</Link>
                         <Link href="/contact" className={`hover:text-black ${isBlogPost && "hover:text-gray-300"} cursor-pointer transition ${pathname === "/contact" ? 'underline' : ""}`}>Contact</Link>
                     </ul>
-                </div> 
+                </div>
                 <div className="right w-[200px]">
 
                 </div>
@@ -46,13 +46,13 @@ export default function NavBar() {
                 </Link>
             </div>
             {open &&
-            <div className="absolute md:hidden top-[60px] flex flex-col items-center justify-center gap-10 text-xl left-0 right-0 h-[60vh] bg-white/90 z-50 rounded-bl-4xl rounded-br-4xl border-b border-gray-500">
-                <Link onClick={() => setOpen(false)} href="/" className={`${pathname === "/" ? 'underline' : ""}`}>Home</Link>
-                <Link onClick={() => setOpen(false)} href="/products" className={`${isProduct ? 'underline' : ""}`}>Products</Link>
-                <Link onClick={() => setOpen(false)} href="/blog" className={`${isBlog ? 'underline' : ""}`}>Blog</Link>
-                <Link onClick={() => setOpen(false)} href="/about" className={`${pathname === "/about" ? 'underline' : ""}`}>About</Link>
-                <Link onClick={() => setOpen(false)} href="/contact" className={`${pathname === "/contact" ? 'underline' : ""}`}>Contact</Link>
-            </div>
+                <div className="absolute md:hidden top-[60px] flex flex-col items-center justify-center gap-10 text-xl left-0 right-0 h-[60vh] bg-white/90 z-50 rounded-bl-4xl rounded-br-4xl border-b border-gray-500">
+                    <Link onClick={() => setOpen(false)} href="/" className={`${pathname === "/" ? 'underline' : ""}`}>Home</Link>
+                    <Link onClick={() => setOpen(false)} href="/products" className={`${isProduct ? 'underline' : ""}`}>Products</Link>
+                    <Link onClick={() => setOpen(false)} href="/blog" className={`${isBlog ? 'underline' : ""}`}>Blog</Link>
+                    <Link onClick={() => setOpen(false)} href="/about" className={`${pathname === "/about" ? 'underline' : ""}`}>About</Link>
+                    <Link onClick={() => setOpen(false)} href="/contact" className={`${pathname === "/contact" ? 'underline' : ""}`}>Contact</Link>
+                </div>
             }
         </nav>
     );
