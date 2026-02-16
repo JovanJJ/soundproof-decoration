@@ -2,12 +2,12 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-300 mt-20 bg-white">
+    <footer className="border-t border-gray-300 mt-20 bg-white text-[#654321]">
       <div className="max-w-7xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-3">
-        
-        
+
+
         <div className="flex flex-col gap-3 w-fit mx-auto text-center">
-          <span className="text-lg font-semibold text-gray-800">
+          <span className="text-lg font-semibold text-[#654321]">
             Soundproof Creations
           </span>
           <p className="text-sm text-gray-600 max-w-xs">
@@ -16,9 +16,9 @@ export default function Footer() {
           </p>
         </div>
 
-        
+
         <div className="flex flex-col gap-3 w-fit mx-auto text-center">
-          <span className="text-sm font-semibold text-gray-800">
+          <span className="text-sm font-semibold text-[#654321]">
             Navigation
           </span>
           <nav className="flex flex-col gap-2 text-sm text-gray-600">
@@ -30,9 +30,9 @@ export default function Footer() {
           </nav>
         </div>
 
-        
+
         <div className="flex flex-col gap-3 w-fit mx-auto text-center">
-          <span className="text-sm font-semibold text-gray-800">
+          <span className="text-sm font-semibold text-[#654321]">
             Our Focus
           </span>
           <ul className="text-sm text-gray-600 flex flex-col gap-2">
@@ -44,11 +44,11 @@ export default function Footer() {
 
       </div>
 
-      
+
       <div className="border-t border-gray-200">
-        
-          <span className="block text-center py-2">© {new Date().getFullYear()} Soundproof Creations. All rights reserved.</span>
-        
+
+        <span className="block font-bold text-center py-2">© {new Date().getFullYear()} Soundproof Creations. All rights reserved.</span>
+
       </div>
     </footer>
   );

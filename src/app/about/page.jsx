@@ -1,16 +1,17 @@
 import Image from "next/image";
 import hero from "../../../public/hero1.png";
+import MessageWidget from "../components/MessageWidget";
 
-   export const metadata = {
-  title: "About",
-  description: "Learn more about Soundproof Creations and our mission to create effective, well-designed acoustic and soundproofing solutions for everyday spaces.",
+export const metadata = {
+    title: "About",
+    description: "Learn more about Soundproof Creations and our mission to create effective, well-designed acoustic and soundproofing solutions for everyday spaces.",
 };
 
 export default function AboutPage() {
 
     return (
         <>
-            
+
             <section className="relative h-[50vh] md:h-[60vh] w-full">
                 <Image
                     src={hero}
@@ -28,7 +29,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            
+
             <section className="px-5 mt-12 text-gray-700">
                 <p className="max-w-3xl mx-auto text-xl md:text-2xl text-center">
                     We believe great interiors are about more than looks.
@@ -37,7 +38,7 @@ export default function AboutPage() {
                 </p>
             </section>
 
-            
+
             <section className="px-5 mt-16 max-w-5xl mx-auto text-gray-700 space-y-14">
                 <div>
                     <h2 className="text-2xl md:text-3xl mb-4">
@@ -78,7 +79,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            
+
             <section className="mt-20 px-5 bg-gray-100 py-16">
                 <div className="max-w-4xl mx-auto text-center text-gray-700">
                     <h2 className="text-2xl md:text-3xl mb-6">
@@ -93,7 +94,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            
+
             <section className="px-5 mt-20 mb-24 text-gray-700">
                 <p className="max-w-4xl mx-auto text-xl md:text-2xl text-center">
                     Your home should work for you.
@@ -101,6 +102,7 @@ export default function AboutPage() {
                     warmer, and more inviting — one thoughtful detail at a time.
                 </p>
             </section>
+            <MessageWidget />
         </>
     );
 }

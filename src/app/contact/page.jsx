@@ -1,15 +1,16 @@
 import Image from "next/image";
 import hero from "../../../public/hero1.png";
+import MessageWidget from "../components/MessageWidget";
 
 export const metadata = {
-  title: "Contact",
-  description: "Contact Soundproof Creations to get advice on soundproofing solutions, product questions, or help choosing the right acoustic treatment.",
+    title: "Contact",
+    description: "Contact Soundproof Creations to get advice on soundproofing solutions, product questions, or help choosing the right acoustic treatment.",
 };
 
 export default function ContactPage() {
     return (
         <>
-            
+
             <section className="relative h-[40vh] md:h-[60vh] w-full">
                 <Image
                     src={hero}
@@ -27,18 +28,18 @@ export default function ContactPage() {
                 </div>
             </section>
 
-            
+
             <section className="px-5 mt-12 text-gray-700">
                 <p className="max-w-3xl mx-auto text-xl md:text-2xl text-center">
                     Have a question about our products or need help choosing
-                    the right solution for your home?  
+                    the right solution for your home?
                     We’re here to help.
                 </p>
             </section>
 
-            
+
             <section className="px-5 mt-16 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 text-gray-700">
-                
+
                 <div>
                     <h2 className="text-2xl md:text-3xl mb-6">
                         Contact Information
@@ -61,7 +62,7 @@ export default function ContactPage() {
                     </p>
                 </div>
 
-                
+
                 <div>
                     <h2 className="text-2xl md:text-3xl mb-6">
                         Send Us a Message
@@ -96,13 +97,14 @@ export default function ContactPage() {
                 </div>
             </section>
 
-            
+
             <section className="px-5 mt-24 mb-24 text-gray-700">
                 <p className="max-w-4xl mx-auto text-xl md:text-2xl text-center">
                     Whether you’re designing a quiet living room or upgrading
                     a modern workspace, we’d love to hear from you.
                 </p>
             </section>
+            <MessageWidget />
         </>
     );
 }
