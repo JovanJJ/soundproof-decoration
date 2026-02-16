@@ -271,9 +271,11 @@ export async function verifyAuth() {
         // If you fetch user from DB here, also serialize:
         const user = await Users.findById(decoded.userId);
         
-        return {
-            id: user._id.toString(), // Convert to string
+        if (user._id) {
+            return {
+            success: true
         };
+        }
     } catch (error) {
         return null;
     }
