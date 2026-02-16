@@ -132,11 +132,11 @@ export async function fetchBlogList() {
     await connectDB();
     const blogList = await Blog.find({}).lean();
     const safeList = blogList.map((post) => {
-        return {       
-                ...post,
-                _id: post._id.toString(),
-                createdAt: post.createdAt?.toISOString(),
-                updatedAt: post.updatedAt?.toISOString(),      
+        return {
+            ...post,
+            _id: post._id.toString(),
+            createdAt: post.createdAt?.toISOString(),
+            updatedAt: post.updatedAt?.toISOString(),
         }
     });
 
@@ -147,31 +147,31 @@ export async function fetchBlogList() {
 
 export async function fetchBlogMetaData(slug) {
     await connectDB();
-    const blog = await Blog.find({slug});
-    
+    const blog = await Blog.find({ slug });
+
     const safeList = blog.map((post) => {
-        return {       
-                seo: post.seo    
+        return {
+            seo: post.seo
         }
     });
 
     return ({
         safeList
-    }); 
+    });
 }
 
 export async function fetchBlogPost(slug) {
     await connectDB();
-    const data = await Blog.find({slug}).lean();
+    const data = await Blog.find({ slug }).lean();
     const blog = data.map((post) => {
-        return{
+        return {
             ...post,
             _id: post._id.toString(),
             createdAt: post.createdAt.toISOString(),
             updatedAt: post.updatedAt.toISOString()
         }
     })
-    return(
+    return (
         blog
     );
 }
@@ -179,28 +179,28 @@ export async function fetchBlogPost(slug) {
 export async function fetchProduct(slug) {
     await connectDB();
 
-    const data = await Product.find({slug}).lean();
+    const data = await Product.find({ slug }).lean();
     const product = data.map((product) => {
-        return{
+        return {
             ...product,
             _id: product._id.toString,
             createdAt: product.createdAt.toISOString(),
             updatedAt: product.updatedAt.toISOString()
         }
     });
-    return(product);
+    return (product);
 }
 
-export async function registerAdmin (formData) {
+export async function registerAdmin(formData) {
     const { email, password, repeatedPassword } = await formData;
-    if(!email){
-        return {message: "Neispravan email"}
+    if (!email) {
+        return { message: "Neispravan email" }
     }
-    if(password.length < 6){
-        return {message: "Sifra mora imati minimum 6 karaktera"}
+    if (password.length < 6) {
+        return { message: "Sifra mora imati minimum 6 karaktera" }
     }
-    if(password !== repeatedPassword){
-        return {message: "Lozinke se ne poklapaju"}
+    if (password !== repeatedPassword) {
+        return { message: "Lozinke se ne poklapaju" }
     }
 
     await connectDB();
@@ -214,33 +214,33 @@ export async function registerAdmin (formData) {
         password: hashedPassword,
     });
 
-    return {success: true, message: "Uspesno ste kreirali nalog"}
-    
+    return { success: true, message: "Uspesno ste kreirali nalog" }
+
 }
 
 export async function login(email, password) {
 
-    
+
     await connectDB();
     // Find user
     const user = await Users.findOne({ email }).select('+password');
     if (!user) {
         return { success: false, message: 'Invalid credentials' };
     }
-    
+
     // Check password
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) {
         return { success: false, message: 'Invalid credentials' };
     }
-    
+
     // Generate token on server
     const token = jwt.sign(
         { userId: user._id, email: user.email },
         process.env.JWT_SECRET,
         { expiresIn: '7d' }
     );
-    
+
     // Set cookie on server
     const cookieStore = await cookies();
     cookieStore.set('authToken', token, {
@@ -249,36 +249,37 @@ export async function login(email, password) {
         sameSite: 'strict',
         maxAge: 7 * 24 * 60 * 60 * 1000
     });
-    
-     return { 
-        success: true, 
-        
+
+    return {
+        success: true,
+
     };
 }
 
 export async function verifyAuth() {
     const cookieStore = await cookies();
     const token = cookieStore.get('authToken')?.value;
-    
+
     if (!token) {
         return;
     }
-    
+
     try {
+        await connectDB();
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        
-        
+
+
         // If you fetch user from DB here, also serialize:
         const user = await Users.findById(decoded.userId);
-        
+
         if (user._id) {
             return {
-            success: true
-        };
+                success: true
+            };
         }
     } catch (error) {
         return null;
     }
 }
-    
-    
+
+

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 export default async function AdminPage() {
     const res = await verifyAuth();
     
-    if(!res?.success){
+    if(!res){
         redirect("/admin/login");
     }
         
