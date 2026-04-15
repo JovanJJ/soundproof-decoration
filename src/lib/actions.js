@@ -5,11 +5,19 @@ import Product from "./models/Product";
 import Blog from "./models/Blog";
 import Users from "./models/Users";
 import bcrypt from "bcryptjs";
-import { redirect } from "next/navigation";
 import jwt from "jsonwebtoken"
 import { cookies } from "next/headers";
+import { Pool } from "pg";
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false,
+    },
+});
 
 export async function addProduct(formData) {
+    console.log(formData);
     await connectDB();
 
     const features = formData.get("features") || "";
@@ -20,7 +28,7 @@ export async function addProduct(formData) {
 
     const product = await Product.create({
         title: formData.get("title"),
-        miblieTitle: formData.get("mobileTitle"),
+        mobileTitle: formData.get("mobileTitle"),
         slug: formData.get("slug"),
         shortDescription: formData.get("shortDescription"),
         descriptionIntro: formData.get("descriptionIntro"),
@@ -228,20 +236,20 @@ export async function login(email, password) {
         return { success: false, message: 'Invalid credentials' };
     }
 
-    // Check password
+
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) {
         return { success: false, message: 'Invalid credentials' };
     }
 
-    // Generate token on server
+
     const token = jwt.sign(
         { userId: user._id, email: user.email },
         process.env.JWT_SECRET,
         { expiresIn: '7d' }
     );
 
-    // Set cookie on server
+
     const cookieStore = await cookies();
     cookieStore.set('authToken', token, {
         httpOnly: true,
@@ -283,3 +291,174 @@ export async function verifyAuth() {
 }
 
 
+//Neon db
+
+export async function getNeonCategories() {
+    try {
+        const sql = `SELECT * FROM categories`;
+        const result = await pool.query(sql);
+        return result.rows;
+    } catch (error) {
+        console.error(error);
+        throw new Error("Server ERROR");
+    }
+}
+
+export async function addNeonProduct(inputData) {
+    try {
+        let data = {};
+
+        if (inputData instanceof FormData) {
+            const f1 = inputData.get("feature1");
+            const f2 = inputData.get("feature2");
+            const f3 = inputData.get("feature3");
+            const f4 = inputData.get("feature4");
+            const formFeatures = [f1, f2, f3, f4].filter(f => f && f.trim() !== "");
+
+            data = {
+                productTitle: inputData.get("productTitle"),
+                productCardTitle: inputData.get("productCardTitle"),
+                slug: inputData.get("slug"),
+                shortDescription: inputData.get("shortDescription"),
+                descriptionIntro: inputData.get("descriptionIntro"),
+                description: inputData.get("description"),
+                features: formFeatures,
+                category: inputData.get("category"),
+                brand: inputData.get("brand"),
+                size: inputData.get("size"),
+                color: inputData.get("color"),
+                images: inputData.get("images"),
+                metaTitle: inputData.get("metaTitle"),
+                metaDescription: inputData.get("metaDescription"),
+                canonicalUrl: inputData.get("canonicalUrl")
+            };
+        } else {
+            data = inputData || {};
+        }
+
+        const { productTitle, productCardTitle, slug, shortDescription,
+            descriptionIntro, description, features, category, brand, size,
+            color, images, metaTitle, metaDescription, canonicalUrl } = data;
+
+        const featuresArray = Array.isArray(features) ? features : (typeof features === 'string' ? features.split(",") : []);
+
+        if (!productTitle || !productCardTitle || !slug || !shortDescription ||
+            !descriptionIntro || !description || !featuresArray || !category || !brand ||
+            !color || !images || !metaTitle || !metaDescription || !canonicalUrl) {
+            return { success: false, message: "All fields are required" };
+        }
+
+        const sql = `INSERT INTO products (title, mobile_title, short_description, description_intro, description, color, size, slug, meta_title, meta_description, canonical_url, category_id, brand_id)
+        VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+        RETURNING id`;
+        const result = await pool.query(sql, [productTitle, productCardTitle, shortDescription, descriptionIntro, description, color, size, slug, metaTitle, metaDescription, canonicalUrl, category, brand]);
+        const { id } = result.rows[0];
+
+        const imagesSql = `INSERT INTO product_images(product_id, url) VALUES($1, $2)`;
+        const imageResult = await pool.query(imagesSql, [id, images]);
+
+        const featuresSql = `INSERT INTO product_features (product_id, feature) VALUES($1, $2)`;
+        let featuresResult = [];
+        for (let i = 0; i < featuresArray.length; i++) {
+            const res = await pool.query(featuresSql, [id, featuresArray[i]]);
+            featuresResult.push(res.rowCount);
+        }
+
+        if (featuresResult.includes(0)) {
+            return { success: false, message: "Server Error" };
+        }
+
+        if (result.rowCount < 1 || imageResult.rowCount < 1) {
+            return { success: false, message: "Server Error" };
+        }
+
+        return { success: true, message: "Successfully added product" };
+
+    } catch (error) {
+        console.error(error);
+        return { success: false, message: "Server Error" };
+    }
+}
+
+export async function getNeonProducts({ page, category }) {
+    const pageNumber = Number(page) || 1;
+    const categoryValue = (category === "undefined" || !category || category === "null") ? null : category;
+    const limit = 6;
+    const offset = (pageNumber - 1) * limit;
+
+    try {
+        const sql = `SELECT p.*, c.name AS category_name, JSON_AGG(f.feature) AS features, i.url AS image_url FROM products p 
+        LEFT JOIN categories c ON p.category_id = c.id
+        LEFT JOIN product_features f ON p.id = f.product_id
+        LEFT JOIN product_images i ON p.id = i.product_id
+        WHERE ($3::text IS NULL OR c.name = $3)
+        GROUP BY p.id, c.name, i.url
+        LIMIT ($1) OFFSET ($2)`;
+
+        const countSql = `SELECT COUNT(*) AS total
+        FROM products p
+        LEFT JOIN categories c ON p.category_id = c.id
+        WHERE ($1::text IS NULL OR c.name = $1)`;
+
+        const response = await pool.query(sql, [limit, offset, categoryValue]);
+        const count = await pool.query(countSql, [categoryValue]);
+        const totalItems = count.rows[0].total;
+        const totalPages = Math.ceil(Number(totalItems) / Number(limit));
+
+        const data = response.rows.map(row => ({
+            ...row,
+            _id: row.id,
+            shortDescription: row.short_description,
+            image: [row.image_url]
+        }));
+
+        return {
+            products: data,
+            pagination: {
+                totalItems: Number(totalItems),
+                totalPages,
+                currentPage: pageNumber,
+                itemsPerPage: limit
+            }
+        };
+    } catch (error) {
+        console.error(error);
+        throw new Error("Internal server error");
+    }
+}
+
+export async function getNeonProduct(slug) {
+    try {
+        const sql = `SELECT p.title, p.short_description, p.description_intro, p.description, p.color, p.affiliate_url,
+        p.size, JSON_AGG(f.feature) AS features, i.url AS product_image FROM products p
+        LEFT JOIN product_features f ON f.product_id = p.id
+        LEFT JOIN product_images i ON i.product_id = p.id
+        WHERE p.slug = $1
+        GROUP BY p.id, i.url`;
+
+        const response = await pool.query(sql, [slug]);
+        const productData = response.rows.map(row => ({
+            ...row,
+            image: [row.product_image],
+            shortDescription: row.short_description,
+            descriptionIntro: row.description_intro,
+        }));
+
+        return productData;
+    } catch (error) {
+        console.error(error);
+        throw new Error("Internal server error");
+    }
+}
+
+export async function getNeonMetadata(slug) {
+    try {
+        const sql = `SELECT p.meta_title, p.meta_description FROM products p WHERE p.slug = $1`;
+        const response = await pool.query(sql, [slug]);
+        const metaData = response.rows;
+        return metaData;
+    } catch (error) {
+        console.error(error);
+        throw new Error("Internal server error");
+    }
+}

@@ -1,3 +1,5 @@
+const { hostname } = require("os")
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -6,6 +8,15 @@ const nextConfig = {
         hostname: 'res.cloudinary.com',
         pathname: '/**',
       },
+
+      {
+        protocol: 'https',
+        hostname: 'arturel.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.bobvila.com',
+      }
     ],
   },
 }

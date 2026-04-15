@@ -1,6 +1,6 @@
 import SearchProducts from "../components/SearchProducts";
 import ProductsList from "../components/ProductsList";
-import { fetchProducts } from "@/lib/actions";
+import { getNeonProducts } from "@/lib/actions";
 
 export const metadata = {
   title: "Products | Acoustic Curtains & Soundproof Panels",
@@ -9,12 +9,13 @@ export const metadata = {
 };
 
 export default async function ProductsPage({ searchParams }) {
-  const data = await fetchProducts({searchParams});
+  const params = await searchParams;
+  const data = await getNeonProducts(params);
 
     const paginationData = {
-      totalItems: data.totalItems,
-      totalPages: data.totalPages,
-      currentPage: data.currentPage
+      totalItems: data.pagination.totalItems,
+      totalPages: data.pagination.totalPages,
+      currentPage: data.pagination.currentPage
     }
 
   return (

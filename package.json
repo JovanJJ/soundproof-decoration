@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:neon": "node src/lib/seeds/seedNeon.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
@@ -14,6 +15,7 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.1.5",
     "next": "16.1.4",
+    "pg": "^8.20.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "styled-jsx": "^5.1.6",
