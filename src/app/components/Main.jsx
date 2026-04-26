@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { fetchBlogList } from "@/lib/actions";
 import first from "../../../public/first.png";
 import second from "../../../public/second.png";
 import third from "../../../public/third.png";
@@ -7,10 +8,15 @@ import fourth from "../../../public/fourth.png";
 import fifth from "../../../public/fifth.png";
 import sixth from "../../../public/sixth.png";
 import panels from "../../../public/panels.png";
+import FirstImageContainer from "./ui/FirstImagesContainer";
+import InfiniteScrollTicker from "./ui/InfiniteScrollTicker";
 
 export default async function Main() {
+    const blogData = await fetchBlogList();
+    const featuredPosts = blogData.safeList.slice(0, 6);
+
     return (
-        <main className="relative z-50  w-full -mt-[29%] sm:-mt-[9%] md:-mt-[7%] lg:-mt-[5.7%] 2xl:-mt-[3.7%]   bg-gradient-to-b from-[#D3D3D3]/99 via-white to-white rounded-tl-[50px] rounded-tr-[50px] pt-4">
+        <main className="relative z-50  w-full -mt-[29%] sm:-mt-[9%] md:-mt-[7%] lg:-mt-[5.7%] 2xl:-mt-[3.7%] bg-white rounded-tl-[50px] rounded-tr-[50px] pt-4">
             <div className="w-full">
                 <div className="w-fit mx-auto px-5">
                     <h2 className="text-2xl sm:text-4xl md:text-4xl text-gray-600 text-center">
@@ -24,6 +30,7 @@ export default async function Main() {
                         Every idea is curated to transform living rooms and workspaces into calm, stylish environments — without compromising on aesthetics.
                     </p>
                 </div>
+                <FirstImageContainer />
                 <div className="w-full  mt-10">
                     <div className="flex flex-col lg:flex-row gap-8 h-full px-10  w-full">
                         <div className="flex-1 aspect-square rounded-xl">
@@ -62,17 +69,19 @@ export default async function Main() {
                     </div>
                 </div>
                 <div className="w-full pt-20">
-                    <h2 className="text-center text-xl lg:text-2xl text-gray-700">You can find more examples on <Link href="/blog" className="underline text-gray-700">blog page</Link></h2>
+                    <h2 className="text-center text-xl lg:text-2xl text-gray-700">You can read and find more examples on <Link href="/blog" className="underline text-gray-700">blog page</Link></h2>
 
-                    <div className="mt-20 w-fit mx-auto bg-gray-200 py-4 px-4 rounded-full"><h2 className="text-xl lg:text-2xl text-gray-700">Check for Solutions 🠋</h2></div>
-                    <section className="max-w-2xl mx-auto px-4 py-20">
+                    <InfiniteScrollTicker posts={featuredPosts} />
+
+                    <div className="mt-20 w-fit mx-auto"><h2 className="text-xl lg:text-2xl text-gray-700">Explore selected soundproof panels and curtains for a quieter, more comfortable space.</h2></div>
+                    <section className="max-w-2xl mx-auto px-4 py-10">
                         <div className="grid grid-cols-1">
                             <Link
                                 href="/products"
                                 className="group relative overflow-hidden rounded-2xl"
                             >
                                 <Image
-                                    src={panels}
+                                    src="/fifth.png"
                                     alt="Luxury decorative soundproof panels"
                                     width={800}
                                     height={600}

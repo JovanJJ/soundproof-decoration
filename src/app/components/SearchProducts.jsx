@@ -26,7 +26,7 @@ export default function SearchProducts() {
     <>
       {isPending && <Spinner />}
       <div>
-        <div className="relative flex flex-col items-center gap-3 h-[270px] border border-gray-200 rounded-4xl justify-center">
+        <div className="relative flex flex-col items-center gap-3 h-[270px] border border-gray-200 rounded-xl justify-center">
           <div className="w-2/3 sm:w-1/2 md:w-[80%] xl:w-[70%] py-2  text-center text-xl rounded cursor-pointer">
             Category
           </div>

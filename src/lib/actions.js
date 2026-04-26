@@ -8,12 +8,12 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken"
 import { cookies } from "next/headers";
 import { Pool } from "pg";
+import nodemailer from "nodemailer";
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false,
-    },
+    //ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : undefined,
+    ssl: { rejectUnauthorized: false },
 });
 
 export async function addProduct(formData) {
@@ -460,5 +460,41 @@ export async function getNeonMetadata(slug) {
     } catch (error) {
         console.error(error);
         throw new Error("Internal server error");
+    }
+}
+
+
+export async function submitContactForm(formData) {
+
+    try {
+        const name = formData.name;
+        const email = formData.email;
+        const message = formData.message;
+
+        if (!name || !email || !message) {
+            return { success: false, message: "All fields are required." };
+        }
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.NODE_MAILER_EMAIL,
+                pass: process.env.NODE_MAILER_PW,
+            },
+        });
+
+        await transporter.sendMail({
+            from: `"${name}" <${process.env.NODE_MAILER_EMAIL}>`,
+            replyTo: email,
+            to: process.env.NODE_MAILER_EMAIL,
+            subject: `New Contact Request from ${name}. (soundproof contact)`,
+            text: `You have received a new message from ${name} (${email}):\n\n${message}`,
+            html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong><br/>${message.replace(/\n/g, '<br/>')}</p>`
+        });
+
+        return { success: true, message: "Your message has been sent successfully!" };
+    } catch (error) {
+        console.error("Error sending contact email:", error);
+        return { success: false, message: "Failed to send message. Please try again." };
     }
 }

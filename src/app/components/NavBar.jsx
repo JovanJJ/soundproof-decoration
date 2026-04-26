@@ -24,8 +24,8 @@ export default function NavBar() {
                         <Image src={logo} fill alt="logo-picture" className="object-cover" />
                     </Link>
                 </div>
-                <div>
-                    <ul className={`flex gap-7 z-50 text-xl ${isBlogPost && "text-white"}  ${isBlog || isProduct ? 'text-gray-700' : 'text-white'}`}>
+                <div className={`bg-white px-5 px-5 text-black py-2 rounded-full`}>
+                    <ul className={`flex gap-7 z-50 text-[1rem]`}>
                         <Link href="/" className={` cursor-pointer transition  ${pathname === "/" ? 'underline' : ""}`}>Home</Link>
                         <Link href="/products" className={`hover:text-black ${isBlogPost && "hover:text-gray-300"} cursor-pointer transition ${isProduct ? 'underline' : ""}`}>Products</Link>
                         <Link href="/blog" className={`hover:text-black ${isBlogPost && "hover:text-gray-300"} cursor-pointer transition ${isBlog ? 'underline' : ""}`}>Blog</Link>

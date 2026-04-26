@@ -1,6 +1,7 @@
 import Image from "next/image";
 import hero from "../../../public/hero1.png";
 import MessageWidget from "../components/MessageWidget";
+import ContactForm from "../components/ContactForm";
 
 export const metadata = {
     title: "Contact",
@@ -68,32 +69,7 @@ export default function ContactPage() {
                         Send Us a Message
                     </h2>
 
-                    <form className="space-y-4">
-                        <input
-                            type="text"
-                            placeholder="Your name"
-                            className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-400"
-                        />
-
-                        <input
-                            type="email"
-                            placeholder="Your email"
-                            className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-400"
-                        />
-
-                        <textarea
-                            rows={5}
-                            placeholder="Your message"
-                            className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-400"
-                        />
-
-                        <button
-                            type="submit"
-                            className="inline-block bg-[#654321] text-white px-8 py-3 rounded-full hover:bg-gray-800 transition"
-                        >
-                            Send Message
-                        </button>
-                    </form>
+                    <ContactForm />
                 </div>
             </section>
 
