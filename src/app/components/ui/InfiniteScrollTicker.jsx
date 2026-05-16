@@ -77,7 +77,7 @@ export default function InfiniteScrollTicker({ posts = [] }) {
                                 className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-300 bg-white shadow-sm transition-transform duration-200 hover:scale-105"
                                 aria-label="Previous blog post"
                             >
-                                <Image src={arrowLeft} alt="" className="h-6 w-6" />
+                                <Image src="/arrow-left.svg" alt='left' width={20} height={20} />
                             </button>
                             <button
                                 type="button"
@@ -85,7 +85,7 @@ export default function InfiniteScrollTicker({ posts = [] }) {
                                 className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-300 bg-white shadow-sm transition-transform duration-200 hover:scale-105"
                                 aria-label="Next blog post"
                             >
-                                <Image src={arrowRight} alt="" className="h-6 w-6" />
+                                <Image src="/arrow-right.svg" alt='left' width={20} height={20} />
                             </button>
                         </div>
                     ) : null}
