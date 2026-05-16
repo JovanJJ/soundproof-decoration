@@ -12,7 +12,7 @@ export default function ContactForm() {
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    console.log(formData);
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -41,48 +41,64 @@ export default function ContactForm() {
             setIsLoading(false);
         }
     }
+    
     return (
-        <>
-            {isLoading ? <div>Loading...</div> :
-                <form className="space-y-4" onSubmit={handleSubmit}>
-                    <input
-                        onChange={handleChange}
-                        name="name"
-                        value={formData.name}
-                        type="text"
-                        placeholder="Your name"
-                        className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-400"
-                    />
+        <div className="h-full flex flex-col justify-center">
+            {isLoading ? <div className="text-gray-500 animate-pulse">Sending message...</div> :
+                <form className="space-y-5" onSubmit={handleSubmit}>
+                    <div className="flex flex-col gap-1.5">
+                        <label htmlFor="name" className="text-sm font-medium text-gray-700">Name</label>
+                        <input
+                            id="name"
+                            onChange={handleChange}
+                            name="name"
+                            value={formData.name}
+                            type="text"
+                            placeholder="Your name"
+                            required
+                            className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#C08552]/40 focus:border-[#C08552] transition-colors bg-gray-50/50"
+                        />
+                    </div>
 
-                    <input
-                        onChange={handleChange}
-                        name="email"
-                        value={formData.email}
-                        type="email"
-                        placeholder="Your email"
-                        className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-400"
-                    />
+                    <div className="flex flex-col gap-1.5">
+                        <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
+                        <input
+                            id="email"
+                            onChange={handleChange}
+                            name="email"
+                            value={formData.email}
+                            type="email"
+                            placeholder="you@example.com"
+                            required
+                            className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#C08552]/40 focus:border-[#C08552] transition-colors bg-gray-50/50"
+                        />
+                    </div>
 
-                    <textarea
-                        onChange={handleChange}
-                        name="message"
-                        rows={5}
-                        value={formData.message}
-                        placeholder="Your message"
-                        className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-400"
-                    />
+                    <div className="flex flex-col gap-1.5">
+                        <label htmlFor="message" className="text-sm font-medium text-gray-700">Message</label>
+                        <textarea
+                            id="message"
+                            onChange={handleChange}
+                            name="message"
+                            rows={4}
+                            value={formData.message}
+                            placeholder="Write your message"
+                            required
+                            className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#C08552]/40 focus:border-[#C08552] transition-colors bg-gray-50/50 resize-none"
+                        />
+                    </div>
 
                     <button
                         type="submit"
-                        className="inline-block bg-[#654321] text-white px-8 py-3 rounded-full hover:bg-gray-800 transition"
+                        className="w-full bg-gradient-to-r from-[#C08552] to-[#C1785A] text-white px-8 py-3.5 rounded-xl hover:shadow-lg hover:shadow-[#C08552]/20 transition-all font-medium mt-2"
                     >
-                        Send Message
+                        Send message
                     </button>
                     {message &&
-                        <p className={`${success ? "text-green-700" : "text-red-400"}`}>{message}</p>
+                        <p className={`text-sm mt-4 text-center ${success ? "text-emerald-600" : "text-red-500"}`}>{message}</p>
                     }
                 </form>
             }
-        </>
+        </div>
     );
 }
